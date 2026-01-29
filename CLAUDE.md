@@ -65,15 +65,20 @@ Available in `.claude/agents/`:
 5. **Commit** - Submodules first, then workspace
 
 ### Git Workflow (use `gh` CLI, not GitHub web)
-Always use feature branches and `gh pr create`:
+- **Target branch**: Always create PRs against `develop`, not `main`
+- **Feature branches**: Create a new branch for each feature (e.g., `feature/add-settings-screen`)
+- **Branch naming**: Use `feature/<name>`, `fix/<name>`, or `chore/<name>` prefixes
+
 ```bash
 # In each submodule
+git checkout develop
+git pull origin develop
 git checkout -b feature/<name>
 git add . && git commit -m "feat: ..."
 git push -u origin feature/<name>
-gh pr create --title "feat: ..." --body "Description"
+gh pr create --base develop --title "feat: ..." --body "Description"
 
-# After PRs merged, update workspace
+# After PRs merged to develop, update workspace
 cd ../..
 git add . && git commit -m "Update submodules"
 git push
