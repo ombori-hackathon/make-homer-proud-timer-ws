@@ -1,0 +1,6 @@
+[submodule "apps/macos-client"]
+	path = apps/macos-client
+	url = git@github.com:ombori-hackathon/make-homer-proud-timer-macos.git
+[submodule "services/api"]
+	path = services/api
+	url = git@github.com:ombori-hackathon/make-homer-proud-timer-api.git
