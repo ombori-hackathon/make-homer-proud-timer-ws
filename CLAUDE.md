@@ -26,13 +26,13 @@ Examples of things to capture:
 ## Quick Start
 
 ```bash
-# Start database
+# Terminal 1: Start database
 docker compose up -d
 
-# Run API (in new terminal)
-cd services/api && uv run fastapi dev
+# Terminal 2: Start API
+cd services/api && uv run uvicorn app.main:app --port 8000 --reload
 
-# Run Swift client (in new terminal)
+# Terminal 3: Start Swift client
 cd apps/macos-client && swift run MakeHomerProudTimerClient
 ```
 
@@ -82,4 +82,25 @@ git push
 ## API Reference
 - Swagger: http://localhost:8000/docs
 - Health: http://localhost:8000/health
-- Items: http://localhost:8000/items (from database)
+- Gods: http://localhost:8000/gods (list all Greek gods)
+- Sessions: http://localhost:8000/sessions (timer sessions)
+- Stats: http://localhost:8000/stats (user statistics)
+
+## Self-Improving Context (MANDATORY)
+
+Every feature implementation MUST include iterative documentation updates:
+
+1. **Research First**: Before implementing, research best practices for the technologies involved
+2. **Document as You Go**: When you discover patterns, gotchas, or conventions, immediately add them to the nearest CLAUDE.md file
+3. **Proximity Rule**: Add learnings to the CLAUDE.md closest to the relevant code:
+   - Model patterns → `app/models/CLAUDE.md`
+   - Router patterns → `app/routers/CLAUDE.md`
+   - View patterns → `Sources/Views/CLAUDE.md`
+   - General patterns → submodule root CLAUDE.md
+4. **Concise Files**: Keep each CLAUDE.md under 500 lines. If approaching this limit:
+   - Split into dedicated agent (`.claude/agents/`)
+   - Create a new skill (`.claude/skills/`)
+   - Create a sub-component CLAUDE.md file
+5. **Agents & Skills**: If a pattern becomes complex enough to warrant detailed instructions, create a dedicated agent or skill file
+
+This self-improving context is paramount and applies to ALL feature work.
